@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="generator.properties"></properties>
+	<classPathEntry location="${jdbc.driverLocation}"/>
+
+	<context id="testTables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressDate" value="true"/>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+		<!-- 修改1 -->
+		<jdbcConnection driverClass="${jdbc.driverClass}"
+						connectionURL="${jdbc.connectionURL}"
+						userId="${jdbc.userId}"
+						password="${jdbc.password}">
+		</jdbcConnection>
+		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和 
+			NUMERIC 类型解析为java.math.BigDecimal -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<!-- targetProject:生成PO类的位置 -->
+		<!-- 修改1 -->
+		<javaModelGenerator targetPackage="com.hzit.demo.model"
+			targetProject="D:\IDE\IDEA_project2020\demo\src\main\java">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+			<!-- 从数据库返回的值被清理前后的空格 -->
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+        <!-- targetProject:mapper映射文件生成的位置 -->
+		<!-- 修改1 -->
+		<sqlMapGenerator targetPackage="com.hzit.demo.mapper"
+			targetProject="D:\IDE\IDEA_project2020\demo\src\main\resources">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+		<!-- targetPackage：mapper接口生成的位置 -->
+		<!-- 修改1 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.hzit.demo.mapper"
+			targetProject="D:\IDE\IDEA_project2020\demo\src\main\java">
+			<!-- enableSubPackages:是否让schema作为包的后缀 -->
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		<!-- 指定数据库表 -->
+		<!-- 修改1 -->
+		<!--<table schema="" tableName="bj_role"></table>
+		<table schema="" tableName="bj_user"></table>
+		<table schema="" tableName="bj_address"></table>-->
+<!--		<table tableName="goods"></table>-->
+		<table tableName="order_info" ></table>
+		<table tableName="seckill_goods"></table>
+		<table tableName="seckill_order"></table>
+		<table tableName="user_info"></table>
+
+
+		<!--mvn启动
+		mybatis-generator:generate -e-->
+
+	</context>
+</generatorConfiguration>
